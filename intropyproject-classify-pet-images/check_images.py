@@ -42,12 +42,6 @@ def main():
     # TODO 0: Measures total program runtime by collecting start time
     start_time = time()
 
-    sleep(75)
-
-    end_time = time()
-
-    tot_time = end_time - start_time
-
     print("\nTotal Elapsed Runtime:", str(int((tot_time / 3600))) + ":" +
           str(int(((tot_time % 3600) / 60))) + ":" +
           str(round(((tot_time % 3600) % 60))))
@@ -133,7 +127,7 @@ def main():
     tot_time = end_time - start_time
     print("\n** Total Elapsed Runtime:",
           str(int((tot_time/3600)))+":"+str(int((tot_time%3600)/60))+":"
-          +str(int((tot_time%3600)%60)) )
+          +str(round((tot_time%3600)%60)) )
     
 
 # Call to main function to run the program
