@@ -68,7 +68,14 @@ def get_pet_labels(image_dir):
            #          accessed by in_files[idx]. Be certain to place the 
            #          extracted dog breed name in the variable pet_label 
            #          that's created as an empty string ABOVE
-           pass
+           low_pet_image = in_files[idx].lower()
+           word_list_pet_image = low_pet_image.split(" ")
+
+            for word in word_list_pet_image:
+                if word.isalpha():
+                    pet_label += word + " "
+
+           pet_label = pet_label.strip()
 
            # If filename doesn't already exist in dictionary add it and it's
            # pet label - otherwise print an error message because indicates 
@@ -80,6 +87,6 @@ def get_pet_labels(image_dir):
                print("** Warning: Duplicate files exist in directory:", 
                      in_files[idx])
  
-    # TODO 2b. Replace None with the results_dic dictionary that you created
-    # with this function
-    return None
+           # TODO 2b. Replace None with the results_dic dictionary that you created
+           # with this function
+           return results_dic
