@@ -52,7 +52,7 @@ def get_pet_labels(image_dir):
 
             pet_label = ""
             low_pet_image = in_files[idx].lower()
-            word_list_pet_image = low_pet_image.split(" ")
+            word_list_pet_image = low_pet_image.split("_")
 
             for word in word_list_pet_image:
                 if word.isalpha():
@@ -67,4 +67,4 @@ def get_pet_labels(image_dir):
             print("** Warning: Duplicate files exist in directory:",
                   in_files[idx])
 
-        return results_dic
+    return results_dic

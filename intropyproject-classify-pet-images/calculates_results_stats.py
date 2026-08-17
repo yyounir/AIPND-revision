@@ -69,8 +69,12 @@ def calculates_results_stats(results_dic):
                      on how to calculate the counts and statistics.
     """        
     # Replace None with the results_stats_dic dictionary that you created with 
-    # this function 
+    # this function
+
+
     results_stats_dic = dict()
+
+    results_stats_dic['n_images'] = len(results_dic)
     results_stats_dic['n_dogs_img'] = 0
     results_stats_dic['n_match'] = 0
     results_stats_dic['n_correct_dogs'] = 0
@@ -94,3 +98,34 @@ def calculates_results_stats(results_dic):
             if (results_dic[key][4] == 0):
                 results_stats_dic['n_correct_notdogs'] += 1
             pass
+
+    results_stats_dic['n_notdogs_img'] = (results_stats_dic['n_images'] -
+                                          results_stats_dic['n_dogs_img'])
+
+    # Calculate percentages (with safeguards against dividing by zero)
+
+    # Percentage of correct matches
+    if results_stats_dic['n_images'] > 0:
+        results_stats_dic['pct_match'] = (results_stats_dic['n_match'] / results_stats_dic['n_images']) * 100.0
+    else:
+        results_stats_dic['pct_match'] = 0.0
+
+    # Percentage of correctly classified dogs and breeds
+    if results_stats_dic['n_dogs_img'] > 0:
+        results_stats_dic['pct_correct_dogs'] = (results_stats_dic['n_correct_dogs'] / results_stats_dic[
+            'n_dogs_img']) * 100.0
+        results_stats_dic['pct_correct_breed'] = (results_stats_dic['n_correct_breed'] / results_stats_dic[
+            'n_dogs_img']) * 100.0
+    else:
+        results_stats_dic['pct_correct_dogs'] = 0.0
+        results_stats_dic['pct_correct_breed'] = 0.0
+
+    # Percentage of correctly classified NON-dogs
+    if results_stats_dic['n_notdogs_img'] > 0:
+        results_stats_dic['pct_correct_notdogs'] = (results_stats_dic['n_correct_notdogs'] / results_stats_dic[
+            'n_notdogs_img']) * 100.0
+    else:
+        results_stats_dic['pct_correct_notdogs'] = 0.0
+
+    # Return completed dictionary
+    return results_stats_dic
